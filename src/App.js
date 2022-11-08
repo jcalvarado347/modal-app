@@ -1,25 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      showModal: false
+    }
+  }
+
+handleModal(){
+  this.setState({showModal: !this.state.showModal})
+}
+
+  render(){
+    return(
+      <div>
+      <Button onClick={()=>this.handleModal()}>Abrir modal</Button>
+      <Modal show= {this.state.showModal} onHide= {()=>this.handleModal()}>
+        <Modal.Header closeButton>
+          Modal header
+        </Modal.Header>
+        <Modal.Body>
+          Body del Modal
+        </Modal.Body>
+        <Modal.Footer>
+          <Button>Aceptar</Button>
+          <Button onClick={()=>this.handleModal()}>Cancelar</Button>
+        </Modal.Footer>
+      </Modal>
+      </div>
+    )
+  }
 }
 
 export default App;
